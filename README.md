@@ -2,7 +2,7 @@
 
 This repo contains a terraform code that allows you to bootstrap EKS cluster and Karpenter installation.
 
-**_Some of the code is commented out because terraform cant have dependencies for resources that are not exist (for now). So please follow next steps._**
+**_Some of the code is commented out because terraform cant have dependencies for resources/providers that are not exist (in the moment of apply). So please follow next steps._**
 
 ### Step-by-step
 
@@ -14,7 +14,7 @@ terraform apply
 
 2. Uncomment code in `karpenter.tf` and `provider.tf`
 
-3. Deploy Karpenter controller and create karpenter node pools doing again:
+3. Deploy Karpenter controller helm chart and create karpenter node pools doing again:
 ```
 terraform init
 terraform apply
@@ -24,7 +24,9 @@ After that we will be having Karpenter node pool for all the workload we would n
 
 Karpenter uses very good cost-effective algorithm to bootstrap required instance(s).
 
-Also we can require specific architecture for our workload by using affinity/nodeSelector in k8s manifest files or helm values:
+### Deployment architecture choose
+We can require specific architecture for our workload by using affinity/nodeSelector in k8s manifest files or helm values:
+
 **`arm64`**
 ```
   affinity:
